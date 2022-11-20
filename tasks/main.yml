@@ -1,2 +1,38 @@
 ---
 # tasks file for my_gnome_role
+- name: Install Gnome Packages
+  become: true
+  ansible.builtin.package:
+    state: present
+    name:
+    - gnome-shell
+    - gnome-tweaks
+    - dconf-editor
+    - python-psutil
+    - xdg-utils # required for xdg-mime below
+    - gnome-screenshot # the original screenshot application
+    - baobab
+    - deja-dup
+    - eog
+    - evince
+    - evolution
+    - file-roller
+    - gnome-backgrounds
+    - gnome-calculator
+    - gnome-calendar
+    - gnome-contacts
+    - gnome-logs
+    - gnome-photos
+    - gnome-remote-desktop
+    - gnome-system-monitor
+    - gnome-text-editor
+    - gnome-weather
+    - simple-scan
+    - gvfs
+    - gvfs-afc
+    - gvfs-goa
+    - gvfs-google
+    - gvfs-gphoto2
+    - gvfs-mtp
+    - gvfs-nfs
+    - gvfs-smb
