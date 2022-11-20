@@ -5,9 +5,11 @@ driver:
   name: docker
 platforms:
   - name: instance
-    image: quay.io/centos/centos:stream8
+    image: ${MOLECULE_DISTRO:-archlinux:latest}
     pre_build_image: true
 provisioner:
   name: ansible
+  playbooks:
+    prepare: prepare.yml
 verifier:
   name: ansible
