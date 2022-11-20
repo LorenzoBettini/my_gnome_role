@@ -1,0 +1,13 @@
+---
+- name: Install Gnome Packages (Arch Linux)
+  become: true
+  ansible.builtin.package:
+    state: present
+    name:
+    - gvfs-afc
+    - gvfs-goa
+    - gvfs-google
+    - gvfs-gphoto2
+    - gvfs-mtp
+    - gvfs-nfs
+    - gvfs-smb
