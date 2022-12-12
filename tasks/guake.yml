@@ -1,0 +1,6 @@
+- name: Install Guake Drop-down Terminal
+  become: true
+  ansible.builtin.package:
+    state: present
+    name:
+    - guake

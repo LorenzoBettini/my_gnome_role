@@ -50,6 +50,9 @@
     state: present
     name: "{{ python_psutil }}"
 
+- name: Tasks for Guake Drop-down Terminal
+  ansible.builtin.include_tasks: guake.yml
+
 - name: Tasks for ArchLinux
   ansible.builtin.include_tasks: gnome-arch.yml
   when: ansible_os_family == 'Archlinux'
@@ -59,3 +62,6 @@
 
 - name: Tasks for Gnome Tracker
   ansible.builtin.include_tasks: gnome-tracker.yml
+
+- name: Tasks for Gnome configuration
+  ansible.builtin.include_tasks: gnome-configurations.yml
