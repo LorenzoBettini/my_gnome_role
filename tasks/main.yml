@@ -68,3 +68,9 @@
 
 - name: Tasks for Gnome extensions
   ansible.builtin.include_tasks: gnome-extensions.yml
+
+- name: Tasks for Flatpak
+  ansible.builtin.include_tasks: flatpak.yml
+
+- name: Tasks for Gnome Extension Manager
+  ansible.builtin.include_tasks: gnome-extension-manager.yml
