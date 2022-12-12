@@ -2,6 +2,6 @@
 roles:
   # Install a role from Ansible Galaxy.
   - name: petermosmans.customize-gnome
-    version: 0.2.5
+    version: 0.2.10
     # src: https://github.com/LorenzoBettini/ansible-role-customize-gnome
     # version: "issue-15"
