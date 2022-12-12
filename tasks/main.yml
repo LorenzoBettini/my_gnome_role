@@ -65,3 +65,6 @@
 
 - name: Tasks for Gnome configuration
   ansible.builtin.include_tasks: gnome-configurations.yml
+
+- name: Tasks for Gnome extensions
+  ansible.builtin.include_tasks: gnome-extensions.yml
