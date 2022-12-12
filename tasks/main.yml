@@ -39,10 +39,10 @@
     - simple-scan
     - gvfs
 
-- name: Override python-psutil package name for Fedora.
+- name: Override python-psutil package name for Arch.
   ansible.builtin.set_fact:
-    python_psutil: python3-psutil
-  when: ansible_os_family == 'RedHat'
+    python_psutil: python-psutil
+  when: ansible_os_family == 'Archlinux'
 
 - name: Install Python psutil
   become: true
