@@ -39,9 +39,16 @@
     - simple-scan
     - gvfs
 
-# TODO:
-# python-psutil in Ubuntu is python3-psutil
-# gvfs-xxx Not in Ubuntu and Fedora
+- name: Override python-psutil package name for Fedora.
+  ansible.builtin.set_fact:
+    python_psutil: python3-psutil
+  when: ansible_os_family == 'RedHat'
+
+- name: Install Python psutil
+  become: true
+  ansible.builtin.package:
+    state: present
+    name: "{{ python_psutil }}"
 
 - name: Tasks for ArchLinux
   ansible.builtin.include_tasks: gnome-arch.yml
