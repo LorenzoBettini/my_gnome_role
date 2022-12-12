@@ -53,3 +53,6 @@
 - name: Tasks for ArchLinux
   ansible.builtin.include_tasks: gnome-arch.yml
   when: ansible_os_family == 'Archlinux'
+
+- name: Tasks for Template files
+  ansible.builtin.include_tasks: gnome-templates.yml
