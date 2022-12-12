@@ -1,3 +1,11 @@
+# Required for unzipping extension archives
+- name: Install Unzip
+  become: true
+  ansible.builtin.package:
+    state: present
+    name:
+    - unzip
+
 # Downloading extensions is very flaky, so if it succeeds on 'converge'
 # we skip it on 'idempotence'
 - name: Install Gnome Extensions
