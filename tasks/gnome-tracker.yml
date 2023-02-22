@@ -32,7 +32,7 @@
 # tracker-extract.service
 # In more recent versions is
 # tracker-extract-3.service
-- name: Disable Tracker Extract for user
+- name: Disable Tracker Extract at system level
   ansible.builtin.systemd:
     name: "{{ item | basename }}"
     scope: global
