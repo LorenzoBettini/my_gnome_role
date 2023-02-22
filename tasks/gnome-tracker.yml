@@ -32,10 +32,11 @@
 # tracker-extract.service
 # In more recent versions is
 # tracker-extract-3.service
-- name: Disable Tracker Extract for user
+- name: Disable Tracker Extract at system level
   ansible.builtin.systemd:
-    name: "{{ item | basename }}"
-    scope: user
+    name: tracker-extract-3
+    scope: global
     masked: yes
-  with_fileglob:
-    - "/usr/lib/systemd/user/tracker-extract*.service"
+# Better to mask it at the global level
+# so that it can be run also in a chroot environment
+# otherwise we get "Failed to connect to bus: No such file or directory"
