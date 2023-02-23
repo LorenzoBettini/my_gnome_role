@@ -6,7 +6,19 @@ A brief description of the role goes here.
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+The `petermosmans.customize-gnome`, as specified in `requirements.yml`. Install the requirements using
+
+```
+ansible-galaxy install -r requirements.yml
+```
+
+When used in a playbook, make sure to add the part
+
+```yaml
+- name: petermosmans.customize-gnome
+```
+
+in your `requirements.yml` together with the version as in `requirements.yml` of this repository.
 
 Role Variables
 --------------
