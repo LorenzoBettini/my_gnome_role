@@ -8,12 +8,11 @@ lint: |
   yamllint .
   ansible-lint
 platforms:
-  - name: instance-arch
-    image: archlinux:latest
+  - name: instance-fedora
+    image: fedora:37
     pre_build_image: true
 provisioner:
   name: ansible
   playbooks:
-    prepare: prepare.yml
     converge: ../shared/converge.yml
     verify: ../shared/verify.yml
