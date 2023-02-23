@@ -5,7 +5,9 @@
   hosts: all
   gather_facts: false
   tasks:
-  - name: Assert flatpak is installed in this scenario
+  - name: Assert flatpak is NOT installed in this scenario
     ansible.builtin.shell: >
       flatpak --version
+    register: flatpak_cmd
+    failed_when: flatpak_cmd.rc == 0
     changed_when: false

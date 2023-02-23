@@ -24,6 +24,7 @@ jobs:
           - default # arch
           - fedora
           - ubuntu
+          - no-flatpak
 
     steps:
       - name: Check out the codebase.
