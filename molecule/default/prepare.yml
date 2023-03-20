@@ -3,6 +3,9 @@
   hosts: all
   gather_facts: false
   tasks:
+    - name: Update Arch
+      ansible.builtin.raw: pacman -Syu --noconfirm
+      changed_when: false
     - name: Install python in Arch
       ansible.builtin.raw: pacman -Sy --noconfirm --needed python sudo
       changed_when: false
