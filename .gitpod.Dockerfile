@@ -1,8 +1,8 @@
-FROM gitpod/workspace-python-3.10:2023-01-02-17-16-30
+FROM gitpod/workspace-python-3.11:latest
 
-# when changing this file, run `gp validate` to test the new image in the current workspace
-# https://www.gitpod.io/docs/configure/workspaces/workspace-image#trying-out-changes-to-your-dockerfile
+# To try this before committing:
+# docker build -f .gitpod.Dockerfile -t gitpod-dockerfile-test .
+# docker run -it gitpod-dockerfile-test bash
 
 RUN pip install --upgrade pip
-
-RUN pip install ansible molecule "molecule-plugins[docker]" "ansible-compat<4" yamllint ansible-lint
+RUN pip install ansible molecule "molecule-plugins[docker]" yamllint ansible-lint
