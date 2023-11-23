@@ -34,11 +34,15 @@
 # tracker-extract.service
 # In more recent versions is
 # tracker-extract-3.service
-- name: Disable Tracker Extract at system level
+- name: Disable Tracker Extract
   ansible.builtin.systemd:
     name: tracker-extract-3
-    scope: global
+    scope: user
     masked: yes
-# Better to mask it at the global level
+# Previously we masked it at the global level
 # so that it can be run also in a chroot environment
 # otherwise we get "Failed to connect to bus: No such file or directory"
+# This is required only if run while installing Arch.
+# However, when running this in a real Ubuntu, the mask silently fails
+# (see https://github.com/LorenzoBettini/my_gnome_role/issues/12)
+# at system level; better to mask it at user level.
