@@ -35,10 +35,13 @@
 # In more recent versions is
 # tracker-extract-3.service
 - name: Disable Tracker Extract
+  tags: molecule-notest
   ansible.builtin.systemd:
     name: tracker-extract-3
     scope: user
     masked: yes
+# Don't run that in Molecule: it succeeds with a Docker without systemd
+# but it fails when running in a Docker with systemd.
 # Previously we masked it at the global level
 # so that it can be run also in a chroot environment
 # otherwise we get "Failed to connect to bus: No such file or directory"
