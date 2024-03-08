@@ -1,7 +1,11 @@
 Role Name
 =========
 
-A brief description of the role goes here.
+My Ansible role for installing "GNOME", some of its applications, and other configurations.
+
+DISCLAIMER: this role is built to fit my needs and configurations, and it is not meant to be reusable.
+
+This role is described in this blog post: https://www.lorenzobettini.it/2023/11/my-ansible-role-for-gnome/
 
 Requirements
 ------------
@@ -20,31 +24,17 @@ When used in a playbook, make sure to add the part
 
 in your `requirements.yml` together with the version as in `requirements.yml` of this repository.
 
-Role Variables
---------------
-
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
-
-Dependencies
-------------
-
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
-
 Example Playbook
 ----------------
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
-
-    - hosts: servers
-      roles:
-         - { role: username.rolename, x: 42 }
+```yaml
+    - name: Install GNOME
+      ansible.builtin.include_role:
+        name: lorenzobettini.my_gnome_role
+```
 
 License
 -------
 
-BSD
+MIT
 
-Author Information
-------------------
-
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
