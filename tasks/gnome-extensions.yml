@@ -21,9 +21,9 @@
       - id: 973 # switcher "switcher@landau.fi"
       - id: 779 # clipboard-indicator
       - id: 1112 # screenshot-tool
-      - id: 3088 # extension-list
       - id: 7 # removable-drive-menu
-      - id: 97 # Coverflow Alt-Tab
+      # - id: 3088 # extension-list
+      # - id: 97 # Coverflow Alt-Tab
       # - id: 16 # Auto Move Windows
       # - id: 10 # windowNavigator
       # - id: 5004 # dash-to-dock-for-cosmic
