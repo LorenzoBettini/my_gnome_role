@@ -5,12 +5,14 @@
     key: "/org/freedesktop/tracker/miner/files/ignored-directories-with-content"
     value: "['.trackerignore', '.hg', '.nomedia']"
     state: present
+  when: modify_dconf
 
 - name: Customize Tracker Ignored directories
   community.general.dconf:
     key: "/org/freedesktop/tracker/miner/files/ignored-directories"
     value: "['po', 'CVS', 'core-dumps', 'lost+found', 'bin', 'test-bin', 'bin-test', 'target', 'xtend-gen', 'src-gen', 'cache', 'node_modules', 'node_packages', 'thunderbird']"
     state: present
+  when: modify_dconf
 
 - name: Make sure Tracker 3 is installed (Arch)
   become: true

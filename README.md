@@ -33,6 +33,15 @@ Example Playbook
         name: lorenzobettini.my_gnome_role
 ```
 
+To avoid the use of dconf for modifying configurations, e.g., when those are handled as dotfiles with another tool:
+
+```yaml
+    - name: Install GNOME
+      ansible.builtin.include_role:
+        name: lorenzobettini.my_gnome_role
+      modify_dconf: false
+```
+
 License
 -------
 

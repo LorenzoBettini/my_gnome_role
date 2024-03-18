@@ -2,3 +2,4 @@
 # vars file for my_gnome_role
 python_psutil: python3-psutil
 with_flatpak: true
+modify_dconf: true
