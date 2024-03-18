@@ -39,7 +39,8 @@ To avoid the use of dconf for modifying configurations, e.g., when those are han
     - name: Install GNOME
       ansible.builtin.include_role:
         name: lorenzobettini.my_gnome_role
-      modify_dconf: false
+      vars:
+        modify_dconf: false
 ```
 
 License
