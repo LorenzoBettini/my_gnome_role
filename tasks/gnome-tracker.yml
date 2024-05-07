@@ -32,7 +32,7 @@
     - tracker-miners
   when: ansible_distribution == 'Fedora'
 
-- name: Make sure Tracker 3 is installed (ubuntu)
+- name: Make sure Tracker 3 is installed (Ubuntu)
   become: true
   ansible.builtin.package:
     state: present
