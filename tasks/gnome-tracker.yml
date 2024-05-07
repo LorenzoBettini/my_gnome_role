@@ -23,14 +23,22 @@
     - tracker3-miners
   when: ansible_os_family == 'Archlinux'
 
-- name: Make sure Tracker 3 is installed (Not Arch)
+- name: Make sure Tracker 3 is installed (Fedora)
   become: true
   ansible.builtin.package:
     state: present
     name:
     - tracker
     - tracker-miners
-  when: ansible_os_family != 'Archlinux'
+  when: ansible_distribution == 'Fedora'
+
+- name: Make sure Tracker 3 is installed (ubuntu)
+  become: true
+  ansible.builtin.package:
+    state: present
+    name:
+    - tracker
+  when: ansible_distribution == 'Ubuntu'
 
 - name: Make sure Tracker 2 is NOT installed (Arch)
   become: true
