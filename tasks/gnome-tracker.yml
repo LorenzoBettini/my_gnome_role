@@ -23,6 +23,23 @@
     - tracker3-miners
   when: ansible_os_family == 'Archlinux'
 
+- name: Make sure Tracker 3 is installed (Fedora)
+  become: true
+  ansible.builtin.package:
+    state: present
+    name:
+    - tracker
+    - tracker-miners
+  when: ansible_distribution == 'Fedora'
+
+- name: Make sure Tracker 3 is installed (Ubuntu)
+  become: true
+  ansible.builtin.package:
+    state: present
+    name:
+    - tracker
+  when: ansible_distribution == 'Ubuntu'
+
 - name: Make sure Tracker 2 is NOT installed (Arch)
   become: true
   ansible.builtin.package:
@@ -32,22 +49,10 @@
     - tracker-miners
   when: ansible_os_family == 'Archlinux'
 
-# In previous versions of ubuntu the service file was
-# tracker-extract.service
-# In more recent versions is
-# tracker-extract-3.service
-- name: Disable Tracker Extract
-  tags: molecule-notest
-  ansible.builtin.systemd:
-    name: tracker-extract-3
-    scope: user
-    masked: yes
-# Don't run that in Molecule: it succeeds with a Docker without systemd
-# but it fails when running in a Docker with systemd.
-# Previously we masked it at the global level
-# so that it can be run also in a chroot environment
-# otherwise we get "Failed to connect to bus: No such file or directory"
-# This is required only if run while installing Arch.
-# However, when running this in a real Ubuntu, the mask silently fails
-# (see https://github.com/LorenzoBettini/my_gnome_role/issues/12)
-# at system level; better to mask it at user level.
+- name: Disable tracker-extract
+  become: true
+  ansible.builtin.shell: >
+    mkdir -p ~/tmp/extract-rules && \
+    find /usr/share/tracker3-miners/extract-rules/ -name "*.rule" -exec mv {} ~/tmp/extract-rules/ \; && \
+    chown -R {{ ansible_user_id }}:{{ ansible_user_id }} ~/tmp/extract-rules
+  changed_when: false
