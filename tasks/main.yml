@@ -31,13 +31,15 @@
     - gnome-calendar
     - gnome-contacts
     - gnome-logs
-    - gnome-photos
     - gnome-remote-desktop
     - gnome-system-monitor
     - gnome-text-editor
     - gnome-weather
     - simple-scan
     - gvfs
+
+# removed in Ubuntu Noble, I'm not using it anyway
+#    - gnome-photos
 
 - name: Override python-psutil package name for Arch.
   ansible.builtin.set_fact:
