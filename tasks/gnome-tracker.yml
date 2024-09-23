@@ -49,10 +49,41 @@
     - tracker-miners
   when: ansible_os_family == 'Archlinux'
 
-- name: Disable tracker-extract
+- name: Parse Gnome Shell version
+  ansible.builtin.shell:
+    cmd: |
+      set -o pipefail
+      gnome-shell --version | sed 's/^[^0-9.]*//' | sed 's/[^0-9]*$//'
+    executable: /bin/bash
+  register: r_gnome_extension_parse_shell_version
+  changed_when: false
+
+- name: Set Gnome Shell version as parameter
+  ansible.builtin.set_fact:
+    gnome_shell_version: "{{ r_gnome_extension_parse_shell_version.stdout }}"
+
+- name: Check if Gnome Shell was detected
+  ansible.builtin.debug:
+    msg: "Sorry - no Gnome Shell detected... exiting"
+  failed_when: true
+  when: not r_gnome_extension_parse_shell_version.stdout
+
+- name: Disable tracker-extract (Gnome < 47)
   become: true
   ansible.builtin.shell: >
     mkdir -p ~/tmp/extract-rules && \
     find /usr/share/tracker3-miners/extract-rules/ -name "*.rule" -exec mv {} ~/tmp/extract-rules/ \; && \
     chown -R {{ ansible_user_id }}:{{ ansible_user_id }} ~/tmp/extract-rules
+  when: gnome_shell_version is version('47.0', '<')
+  changed_when: false
+
+# In Gnome 47 tracker and miners have a different name
+# https://discourse.gnome.org/t/renaming-tracker-git-and-tracker-sparql-git-and-changing-default-branch/21461
+- name: Disable tracker-extract (Gnome >= 47)
+  become: true
+  ansible.builtin.shell: >
+    mkdir -p ~/tmp/extract-rules && \
+    find /usr/share/localsearch3/extract-rules/ -name "*.rule" -exec mv {} ~/tmp/extract-rules/ \; && \
+    chown -R {{ ansible_user_id }}:{{ ansible_user_id }} ~/tmp/extract-rules
+  when: gnome_shell_version is version('47.0', '>=')
   changed_when: false
