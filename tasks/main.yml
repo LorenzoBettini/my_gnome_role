@@ -35,6 +35,8 @@
     - gnome-system-monitor
     - gnome-text-editor
     - gnome-weather
+    - gnome-keyring
+    - seahorse
     - simple-scan
     - gvfs
 
