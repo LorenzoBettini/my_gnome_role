@@ -68,22 +68,28 @@
   failed_when: true
   when: not r_gnome_extension_parse_shell_version.stdout
 
-- name: Disable tracker-extract (Gnome < 47)
+- name: Check if the directory "/usr/share/localsearch3" exists
+  ansible.builtin.stat:
+    path: /usr/share/localsearch3
+  register: localsearch3_check
+
+- name: Disable tracker-extract (tracker3-miners)
   become: true
   ansible.builtin.shell: >
     mkdir -p ~/tmp/extract-rules && \
     find /usr/share/tracker3-miners/extract-rules/ -name "*.rule" -exec mv {} ~/tmp/extract-rules/ \; && \
     chown -R {{ ansible_user_id }}:{{ ansible_user_id }} ~/tmp/extract-rules
-  when: gnome_shell_version is version('47.0', '<')
+  when: not localsearch3_check.stat.exists
   changed_when: false
 
 # In Gnome 47 tracker and miners have a different name
 # https://discourse.gnome.org/t/renaming-tracker-git-and-tracker-sparql-git-and-changing-default-branch/21461
-- name: Disable tracker-extract (Gnome >= 47)
+# But in Fedora 41 they seem to have gonve back to the old name
+- name: Disable tracker-extract (localsearch3)
   become: true
   ansible.builtin.shell: >
     mkdir -p ~/tmp/extract-rules && \
     find /usr/share/localsearch3/extract-rules/ -name "*.rule" -exec mv {} ~/tmp/extract-rules/ \; && \
     chown -R {{ ansible_user_id }}:{{ ansible_user_id }} ~/tmp/extract-rules
-  when: gnome_shell_version is version('47.0', '>=')
+  when: localsearch3_check.stat.exists
   changed_when: false
