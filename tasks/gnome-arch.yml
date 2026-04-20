@@ -6,7 +6,7 @@
     name:
     - gvfs-afc
     - gvfs-goa
-    - gvfs-google
+    # - gvfs-google # discontinued
     - gvfs-gphoto2
     - gvfs-mtp
     - gvfs-nfs
